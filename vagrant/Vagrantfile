@@ -71,9 +71,9 @@ Vagrant.configure(2) do |config|
   end
 
  (1..2).each do |i|
-    config.vm.define "node_prod-0#{i}" do |d|
+    config.vm.define "node-prod-0#{i}" do |d|
       d.vm.box = "ubuntu/trusty64"
-      d.vm.hostname = "node_prod-0#{i}"
+      d.vm.hostname = "node-prod-0#{i}"
       d.vm.network "private_network", ip: "10.100.100.20#{i}"
       d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
       d.vm.provider "virtualbox" do |v|
@@ -84,9 +84,9 @@ Vagrant.configure(2) do |config|
   end
 
  (1..2).each do |i|
-    config.vm.define "node_preprod-0#{i}" do |d|
+    config.vm.define "node-preprod-0#{i}" do |d|
       d.vm.box = "ubuntu/trusty64"
-      d.vm.hostname = "node_preprod-0#{i}"
+      d.vm.hostname = "node-preprod-0#{i}"
       d.vm.network "private_network", ip: "10.100.200.20#{i}"
       d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
       d.vm.provider "virtualbox" do |v|
@@ -97,9 +97,9 @@ Vagrant.configure(2) do |config|
   end
 
  (1..2).each do |i|
-  config.vm.define "node_devel-0#{i}" do |d|
+  config.vm.define "node-devel-0#{i}" do |d|
     d.vm.box = "ubuntu/trusty64"
-    d.vm.hostname = "node_devel-0#{i}"
+    d.vm.hostname = "node-devel-0#{i}"
     d.vm.network "private_network", ip: "10.100.250.20#{i}"
     d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
     d.vm.provider "virtualbox" do |v|
