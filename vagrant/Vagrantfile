@@ -1,0 +1,111 @@
+Vagrant.configure(2) do |config|
+  if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+    config.vm.synced_folder ".", "/vagrant", mount_options: ["dmode=700,fmode=600"]
+  else
+    config.vm.synced_folder ".", "/vagrant"
+  end
+  config.vm.define "frontal-prod" do |d|
+    d.vm.box = "ubuntu/trusty64"
+    d.vm.hostname = "frontal-prod"
+    d.vm.network "private_network", ip: "10.100.100.220"
+    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+    d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]            
+      v.memory =1024 
+    end
+  end
+  
+  config.vm.define "frontal-preprod" do |d|
+    d.vm.box = "ubuntu/trusty64"
+    d.vm.hostname = "frontal-preprod"
+    d.vm.network "private_network", ip: "10.100.200.220"
+    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+    d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]            
+      v.memory =1024 
+    end
+  end
+  
+  config.vm.define "frontal-devel" do |d|
+    d.vm.box = "ubuntu/trusty64"
+    d.vm.hostname = "frontal-devel"
+    d.vm.network "private_network", ip: "10.100.250.220"
+    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+    d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]            
+      v.memory =1024 
+    end
+  end
+
+  config.vm.define "db-prod" do |d|
+    d.vm.box = "ubuntu/trusty64"
+    d.vm.hostname = "db-prod"
+    d.vm.network "private_network", ip: "10.100.100.221"
+    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+    d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]            
+      v.memory =1024 
+    end
+  end
+
+  config.vm.define "db-preprod" do |d|
+    d.vm.box = "ubuntu/trusty64"
+    d.vm.hostname = "db-preprod"
+    d.vm.network "private_network", ip: "10.100.200.221"
+    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+    d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]            
+      v.memory =1024 
+    end
+  end
+  
+  config.vm.define "db-devel" do |d|
+    d.vm.box = "ubuntu/trusty64"
+    d.vm.hostname = "db-devel"
+    d.vm.network "private_network", ip: "10.100.250.221"
+    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+    d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]            
+      v.memory =1024 
+    end
+  end
+
+ (1..2).each do |i|
+    config.vm.define "node_prod-0#{i}" do |d|
+      d.vm.box = "ubuntu/trusty64"
+      d.vm.hostname = "node_prod-0#{i}"
+      d.vm.network "private_network", ip: "10.100.100.20#{i}"
+      d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+      d.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]     
+        v.memory = 1024
+      end
+    end
+  end
+
+ (1..2).each do |i|
+    config.vm.define "node_preprod-0#{i}" do |d|
+      d.vm.box = "ubuntu/trusty64"
+      d.vm.hostname = "node_preprod-0#{i}"
+      d.vm.network "private_network", ip: "10.100.200.20#{i}"
+      d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+      d.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]     
+        v.memory = 1024
+      end
+    end
+  end
+
+ (1..2).each do |i|
+  config.vm.define "node_devel-0#{i}" do |d|
+    d.vm.box = "ubuntu/trusty64"
+    d.vm.hostname = "node_devel-0#{i}"
+    d.vm.network "private_network", ip: "10.100.250.20#{i}"
+    d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
+    d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]     
+      v.memory = 1024
+    end
+  end
+ end
+end
