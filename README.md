@@ -6,3 +6,10 @@ Mostrar com podria funcionar un cicle de vida de desenvolupament sobre Sakai uti
 - Es fa testing a l'entorn de pre-producció i en cas de superar totes les proves es marca el codi amb un tag de versió.
 - Un workflow Github Actions crea una nova Release empaquetant el codi en un o més Dockerfile i, en cas necessari, un docker-compose.yml.
 - El Jenkins on-premises "escolta" la creació de relases i desplega les imatges en l'entorn de producció.
+
+# Necessitats
+- Receptes per a "construir" un entorn de proves de pre-release a Github Actions.
+- Recepta per a crear release candidate en forma de imatge Docker o varies imatges i docker-compose que defineixi com funcionen en conjunt.
+- Recepta de Jenkins per a desplegar release-candidate en pre-pruducció.
+- Recepta per a "construir" entorn de proves de release a Github Actions.
+- Recepta de Jenkins per a desplegar release en producció.
