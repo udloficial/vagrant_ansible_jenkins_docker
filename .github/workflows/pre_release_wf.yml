@@ -22,4 +22,4 @@ jobs:
       # Create a Docker image from Dockerfile
       - name: Create Docker image
         run: docker build . --file Dockerfile_PreRelease
-         working-directory: ./create_image/
+        working-directory: ./create_image
