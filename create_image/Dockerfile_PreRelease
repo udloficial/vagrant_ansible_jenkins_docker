@@ -1,6 +1,6 @@
 FROM maven:3.6.1-jdk-8 as build
 
-ARG release=master
+ARG release=20.0
 
 COPY conf/settings.xml /usr/share/maven/conf/settings.xml
 RUN mkdir /deploy
