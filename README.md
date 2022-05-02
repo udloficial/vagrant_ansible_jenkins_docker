@@ -8,8 +8,14 @@ Mostrar com podria funcionar un cicle de vida de desenvolupament sobre Sakai uti
 - El Jenkins on-premises "escolta" la creació de relases i desplega les imatges en l'entorn de producció.
 
 # Necessitats
-- Receptes per a "construir" un entorn de proves de pre-release a Github Actions.
+- Receptes per a "construir" un entorn de proves de pre-release a Github Actions. 
 - Recepta per a crear release candidate en forma de imatge Docker o varies imatges i docker-compose que defineixi com funcionen en conjunt.
 - Recepta de Jenkins per a desplegar release-candidate en pre-pruducció.
 - Recepta per a "construir" entorn de proves de release a Github Actions.
 - Recepta de Jenkins per a desplegar release en producció.
+
+# Construcció entorn de proves de pre-release
+S'hauran de crear els següents recursos:
+- Dockerfile de creació del "servei" Sakai des de la darrera versió del codi.
+- Recepta Github Actions que permeti el build de la imatge Docker a partir d'aquest Dockerfile.
+- Recepta GitHub Actions per a crear un stack de proves amb Nginx com a frontal que derivi peticions a un node Tomcat amb Sakai i una bbdd mysql
