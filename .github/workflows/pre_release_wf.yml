@@ -1,6 +1,6 @@
-dd# This is a basic workflow to help you get started with Actions
+# This is a basic workflow to help you get started with Actions
 
-name: CI
+name: PreRelease
 
 # Controls when the workflow will run
 on:
