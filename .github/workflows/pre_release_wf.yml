@@ -31,6 +31,7 @@ jobs:
       
       - name: Build and push
         uses: docker/build-push-action@v2
+        with:
           context: "{{defaultContext}}:./create_image/"
           load: true
           tags: sakai/app:test
@@ -42,6 +43,7 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v2
+        with:
           context: "{{defaultContext}}:./create_image/"
           push: true
           tags: sakai/app:latest
