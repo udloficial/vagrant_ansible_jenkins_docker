@@ -4,6 +4,7 @@ name: PreRelease
 
 # Controls when the workflow will run
 on:
+        with:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -19,7 +20,30 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Create a Docker image from Dockerfile
-      - name: Create Docker image
-        run: docker build . --file Dockerfile_PreRelease
-        working-directory: ./create_image
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v2
+          context: "{{defaultContext}}:./create_image/"
+          load: true
+          tags: sakai/app:test
+          file: Dockerfile_PreRelease
+
+      - name: Test
+        run: |
+          docker run --rm user/app:test
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+          context: "{{defaultContext}}:./create_image/"
+          push: true
+          tags: sakai/app:latest
+          file: Dockerfile_PreRelease
