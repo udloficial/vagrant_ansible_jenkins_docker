@@ -28,7 +28,22 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       
-#      - name: Build and push
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: ./create_image/
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          file: Dockerfile_PreRelease
+          
+#      - name: Build
 #        uses: docker/build-push-action@v2
 #        with:
 #          context: "{{defaultContext}}:./create_image/"
@@ -39,11 +54,3 @@ jobs:
 #      - name: Test
 #        run: |
 #          docker run --rm dbarrosoudl/sakai:test
-
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: "{{defaultContext}}:./create_image/"
-          push: true
-          tags: dbarrosoudl/sakai:pre-release
-          file: Dockerfile_PreRelease
