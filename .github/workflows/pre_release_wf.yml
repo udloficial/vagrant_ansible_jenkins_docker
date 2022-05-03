@@ -38,7 +38,7 @@ jobs:
 
       - name: Test
         run: |
-          docker run --rm user/app:test
+          docker run --rm sakai/app:test
 
       - name: Build and push
         uses: docker/build-push-action@v2
