@@ -33,17 +33,17 @@ jobs:
 #        with:
 #          context: "{{defaultContext}}:./create_image/"
 #          load: true
-#          tags: sakai/app:test
+#          tags: dbarrosoudl/sakai:test
 #          file: Dockerfile_PreRelease
 
 #      - name: Test
 #        run: |
-#          docker run --rm sakai/app:test
+#          docker run --rm dbarrosoudl/sakai:test
 
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: "{{defaultContext}}:./create_image/"
           push: true
-          tags: sakai/app:pre-release
+          tags: dbarrosoudl/sakai:pre-release
           file: Dockerfile_PreRelease
