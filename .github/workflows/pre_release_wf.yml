@@ -28,22 +28,22 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: "{{defaultContext}}:./create_image/"
-          load: true
-          tags: sakai/app:test
-          file: Dockerfile_PreRelease
+#      - name: Build and push
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: "{{defaultContext}}:./create_image/"
+#          load: true
+#          tags: sakai/app:test
+#          file: Dockerfile_PreRelease
 
-      - name: Test
-        run: |
-          docker run --rm sakai/app:test
+#      - name: Test
+#        run: |
+#          docker run --rm sakai/app:test
 
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: "{{defaultContext}}:./create_image/"
           push: true
-          tags: sakai/app:latest
+          tags: sakai/app:pre-release
           file: Dockerfile_PreRelease
