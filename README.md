@@ -17,5 +17,7 @@ Mostrar com podria funcionar un cicle de vida de desenvolupament sobre Sakai uti
 # Construcció entorn de proves de pre-release
 S'hauran de crear els següents recursos:
 - Dockerfile de creació del "servei" Sakai des de la darrera versió del codi.
-- Recepta Github Actions que permeti el build de la imatge Docker a partir d'aquest Dockerfile.
-- Recepta GitHub Actions per a crear un stack de proves amb Nginx com a frontal que derivi peticions a un node Tomcat amb Sakai i una bbdd mysql
+- Recepta Github Actions que permeti el build de la imatge Docker a partir d'aquest Dockerfile i la publicació de la imatge com a Pre-Release al registre de Guthub.
+- Recepta GitHub Actions per a crear un stack de proves amb Nginx com a frontal que derivi peticions a un node Tomcat amb Sakai (imatge Pre-Release) i una bbdd mysql. Realització de proves en aquest entorn i validació per a pas a Release Candidate.
+- Workflow Jekins que desplegui aquest stack en màquines físiques a l'entorn de test.
+- Recepta GitHub Actions que permeti el build de la imatge Docker a partir del Dockerfile i publicació com a Release Candidate.
