@@ -42,7 +42,7 @@ jobs:
         with:
           context: "{{defaultContext}}:./create_image/"
           push: true
-          file: Dockerfile_PreRelease
+          file: Dockerfile_test
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           
