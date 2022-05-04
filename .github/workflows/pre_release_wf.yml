@@ -45,8 +45,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./create_image/
           push: true
-          file: ./create_image/Dockerfile_PreRelease
+          file: Dockerfile_PreRelease
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
