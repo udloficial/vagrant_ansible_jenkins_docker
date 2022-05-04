@@ -32,7 +32,7 @@ jobs:
       - name: Login to Github docker registry
         uses: docker/login-action@v1 
         with:
-          registry: ghcr.io
+          registry: ${{ env.REPOSITORY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       
@@ -40,25 +40,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ghcr.io/${{ env.IMAGE_NAME }}
+          images: ${{ env.REPOSITORY }}/${{ env.IMAGE_NAME }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          file: ./create_image/Dockerfile_test
+          file: ./create_image/Dockerfile_PreRelease
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
-#      - name: Build
-#        uses: docker/build-push-action@v2
-#        with:
-#          context: "{{defaultContext}}:./create_image/"
-#          load: true
-#          tags: dbarrosoudl/sakai:test
-#          file: Dockerfile_PreRelease
-
-#      - name: Test
-#        run: |
-#          docker run --rm dbarrosoudl/sakai:test
