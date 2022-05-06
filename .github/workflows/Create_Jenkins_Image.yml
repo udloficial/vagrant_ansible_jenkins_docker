@@ -9,7 +9,7 @@ on:
   
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: Jenkins_${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository.owner }}/Jenkins
 
 jobs:
   build:
