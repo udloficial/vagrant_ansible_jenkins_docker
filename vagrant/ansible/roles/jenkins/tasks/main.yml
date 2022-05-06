@@ -59,7 +59,7 @@
 - name: Container is running
   docker_container:
     name=jenkins
-    image=jenkins/jenkins:lts-jdk11
+    image=ghcr.io/udloficial/jenkins:main
     ports=8080:8080
     volumes=/data/jenkins:/var/jenkins_home
   tags: [jenkins]
