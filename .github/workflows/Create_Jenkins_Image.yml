@@ -9,7 +9,7 @@ on:
   
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: jenkins:latest
+  IMAGE_NAME: jenkins
 
 jobs:
   build:
