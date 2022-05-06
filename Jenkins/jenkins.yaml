@@ -1,0 +1,13 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  numExecutors: 1
+  scmCheckoutRetryCount: 0
+  mode: NORMAL
+  disableRememberMe: FALSE
+  authorizationStrategy: unsecured
+  securityRealm: none
+  projectNamingStrategy: standard
+
+unclassified:
+  location:
+    url: http://localhost:8080
